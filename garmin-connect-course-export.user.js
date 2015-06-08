@@ -4,6 +4,7 @@
 // @description   Export courses from the Garmin Connect web site 
 // @include       https://connect.garmin.com/mincourse/*
 // @version       1.0
+// @updateURL     https://github.com/johannes/garmin-connect-gmscripts/raw/master/garmin-connect-course-export.user.js
 // ==/UserScript==
 
 (function() {
