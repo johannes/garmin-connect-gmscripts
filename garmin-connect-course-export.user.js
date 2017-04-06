@@ -8,18 +8,19 @@
 // ==/UserScript==
 
 (function() {
-  var formats = {
-    JSON: 'http://connect.garmin.com/proxy/course-service-1.0/json/course/',
-    FIT: 'http://connect.garmin.com/proxy/course-service-1.0/fit/course/',
-    TCX: 'http://connect.garmin.com/proxy/course-service-1.0/tcx/course/',
-    GPX: 'http://connect.garmin.com/proxy/course-service-1.0/gpx/course/',
-    GPOLYLINE: 'http://connect.garmin.com/proxy/course-service-1.0/gpolyline/course/'
-  };
+    var formats = [
+        {type: 'JSON', url: '//connect.garmin.com/proxy/course-service-1.0/json/course/',ext: '.json'},
+        {type: 'FIT', url: '//connect.garmin.com/proxy/course-service-1.0/fit/course/',ext: '.fit'},
+        {type: 'TCX', url: '//connect.garmin.com/proxy/course-service-1.0/tcx/course/',ext: '.tcx'},
+        {type: 'GPOLYLINE', url: '//connect.garmin.com/proxy/course-service-1.0/gpolyline/course/',ext: '.kml'},
+        {type: 'GPX', url: '//connect.garmin.com/proxy/course-service-1.0/gpx/course/',ext: '.gpx'}
+    ];
 
   var id = window.location.href.replace('https://connect.garmin.com/mincourse/', '');
-  var ex = '';
-  for (var f in formats) {
-    ex += '<a href="'+formats[f]+id+'">'+f+'</a> ';
-  } 
+  var ex = '<div style="border-left:1px solid #ccc;display:inline-block;margin-left:20px;">';
+  for (var i=0;i<formats.length; i++) {
+    ex += '<a class="export route-button-text" href="'+formats[i].url+id+formats[i].ext+'">'+formats[i].type+'</a> ';
+  }
+    ex += '</div>';
   $('viewModeItems').innerHTML += ex;
 })();
